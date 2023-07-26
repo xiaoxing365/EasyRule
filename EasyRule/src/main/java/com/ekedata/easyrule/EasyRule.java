@@ -25,7 +25,7 @@ public class EasyRule extends JavaPlugin implements CommandExecutor, TabComplete
         getCommand("easyrule").setTabCompleter(this);
 
         // 插件成功加载提示信息
-        getLogger().info("§7[§6EasyRule§7]§a插件加载成功！");
+        getLogger().info("§a插件加载成功！");
     }
 
     @Override
@@ -33,7 +33,7 @@ public class EasyRule extends JavaPlugin implements CommandExecutor, TabComplete
     public void onDisable() {
 
         // 发送卸载的提示消息（红色）
-        getLogger().info("§7[§6EasyRule§7]§c插件已卸载！");
+        getLogger().info("§c插件已卸载！");
     }
 
     @Override
@@ -66,13 +66,9 @@ public class EasyRule extends JavaPlugin implements CommandExecutor, TabComplete
 
             // 根据规则名称执行相应操作
             switch (rule) {
-                case "苦力怕爆炸":
-                    player.getWorld().setGameRuleValue("disableCreeperExplosions", String.valueOf(value));
+                case "爆炸保护":
+                    player.getWorld().setGameRuleValue("mobGriefing", String.valueOf(value));
                     sender.sendMessage("§a已" + (value ? "启用" : "禁用") + "苦力怕爆炸！");
-                    break;
-                case "凋灵爆炸":
-                    player.getWorld().setGameRuleValue("disableEndermanExplosions", String.valueOf(value));
-                    sender.sendMessage("§a已" + (value ? "启用" : "禁用") + "凋灵爆炸！");
                     break;
                 case "死亡不掉落":
                     player.getWorld().setGameRuleValue("keepInventory", String.valueOf(value));
@@ -92,8 +88,7 @@ public class EasyRule extends JavaPlugin implements CommandExecutor, TabComplete
         // 提供Tab补全选项
         List<String> completions = new ArrayList<>();
         if (args.length == 1) {
-            completions.add("苦力怕爆炸");
-            completions.add("凋灵爆炸");
+            completions.add("爆炸保护");
             completions.add("死亡不掉落");
         }
         if (args.length == 2) {
