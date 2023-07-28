@@ -68,7 +68,7 @@ public class EasyRule extends JavaPlugin implements CommandExecutor, TabComplete
             switch (rule) {
                 case "爆炸保护":
                     player.getWorld().setGameRuleValue("mobGriefing", String.valueOf(value));
-                    sender.sendMessage("§a已" + (value ? "启用" : "禁用") + "苦力怕爆炸！");
+                    sender.sendMessage("§a已" + (value ? "启用" : "禁用") + "爆炸保护！");
                     break;
                 case "死亡不掉落":
                     player.getWorld().setGameRuleValue("keepInventory", String.valueOf(value));
@@ -76,7 +76,7 @@ public class EasyRule extends JavaPlugin implements CommandExecutor, TabComplete
                     break;
                 default:
                     sender.sendMessage("§c无效的规则！");
-                    sender.sendMessage("§e可用的规则：苦力怕爆炸、凋灵爆炸、死亡不掉落");
+                    sender.sendMessage("§e可用的规则：爆炸保护、死亡不掉落");
                     break;
             }
         }
