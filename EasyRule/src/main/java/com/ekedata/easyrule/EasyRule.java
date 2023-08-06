@@ -9,6 +9,11 @@ package com.ekedata.easyrule;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.ekedata.easyrule.cmds.MainCmd;
+import com.ekedata.easyrule.cmds.Tab;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -18,14 +23,22 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class EasyRule extends JavaPlugin implements CommandExecutor, TabCompleter {
 
+    private EasyRule instance;
+
+    public EasyRule getInstance(){
+        return instance;
+    }
+
     @Override
     public void onEnable() {
-        // 注册指令执行器和补全器
-        getCommand("easyrule").setExecutor(this);
-        getCommand("easyrule").setTabCompleter(this);
+        instance = this;
+        // 注册指令执行器和TAB补全
+        getCommand("easyrule").setExecutor(new MainCmd());
+        getCommand("easyrule").setTabCompleter(new Tab());
 
         // 插件成功加载提示信息
-        getLogger().info("§a插件加载成功！");
+        Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN+"插件加载成功！");
+        //getLogger().info();
     }
 
     @Override
@@ -33,68 +46,8 @@ public class EasyRule extends JavaPlugin implements CommandExecutor, TabComplete
     public void onDisable() {
 
         // 发送卸载的提示消息（红色）
-        getLogger().info("§c插件已卸载！");
+        Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN+"插件已卸载！");
+        //getLogger().info("§c插件已卸载！");
     }
 
-    @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        // 检查是否为控制台或是否拥有管理权限
-        //这里如果担心被刷OP可以根据自身经验进行修改
-        if (!(sender instanceof Player) || !sender.isOp()) {
-            sender.sendMessage("§c你没有权限执行该指令！");
-            return true;
-        }
-
-        // 检查指令是否为 /easyrule
-        if (command.getName().equalsIgnoreCase("easyrule")) {
-            // 检查参数数量
-            if (args.length < 2) {
-                sender.sendMessage("§e正确用法：/easyrule <规则名称> <true|false>");
-                return true;
-            }
-
-            // 获取玩家对象和要更改的规则名称和值
-            Player player = (Player) sender;
-            String rule = args[0].toLowerCase();
-            boolean value;
-            try {
-                value = Boolean.parseBoolean(args[1]);
-            } catch (IllegalArgumentException e) {
-                sender.sendMessage("§c请输入有效值！");
-                return true;
-            }
-
-            // 根据规则名称执行相应操作
-            switch (rule) {
-                case "爆炸保护":
-                    player.getWorld().setGameRuleValue("mobGriefing", String.valueOf(value));
-                    sender.sendMessage("§a已" + (value ? "启用" : "禁用") + "爆炸保护！");
-                    break;
-                case "死亡不掉落":
-                    player.getWorld().setGameRuleValue("keepInventory", String.valueOf(value));
-                    sender.sendMessage("§a已" + (value ? "启用" : "禁用") + "死亡不掉落！");
-                    break;
-                default:
-                    sender.sendMessage("§c无效的规则！");
-                    sender.sendMessage("§e可用的规则：爆炸保护、死亡不掉落");
-                    break;
-            }
-        }
-        return true;
-    }
-
-    @Override
-    public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
-        // 提供Tab补全选项
-        List<String> completions = new ArrayList<>();
-        if (args.length == 1) {
-            completions.add("爆炸保护");
-            completions.add("死亡不掉落");
-        }
-        if (args.length == 2) {
-            completions.add("true");
-            completions.add("false");
-        }
-        return completions;
-    }
 }
