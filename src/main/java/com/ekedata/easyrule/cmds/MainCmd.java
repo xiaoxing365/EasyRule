@@ -27,11 +27,12 @@ public class MainCmd implements CommandExecutor {
 
         // 检查指令是否为 /easyrule
         if (command.getName().equalsIgnoreCase("easyrule")) {
-            // 检查参数数量
+            /*检查参数数量
             if (args.length < 2) {
-                sender.sendMessage(ChatColor.YELLOW+"正确用法：/easyrule <规则名称> <true|false>");
+                //sender.sendMessage(ChatColor.YELLOW+"正确用法：/easyrule <规则名称> <true|false>");
                 return true;
             }
+            */
 
             // 获取玩家对象和要更改的规则名称和值
             Player player = (Player) sender;
