@@ -22,7 +22,7 @@ public class GameRuleGui implements CommandExecutor {
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
 
         if (!(sender instanceof Player)) {
-            sender.sendMessage(ChatColor.RED+"此指令只能由玩家发送！");
+            sender.sendMessage(ChatColor.RED+"此指令只能由管理员发送！");
             return true;
         }
         Player player = (Player) sender;
@@ -50,7 +50,7 @@ public class GameRuleGui implements CommandExecutor {
         return false;
     }
 
-    private void CreateGui(){
+    public void CreateGui(){
         Inventory inv = Bukkit.createInventory(null,54,ChatColor.AQUA+"EasyRule服务器规则配置界面");
 
         ItemStack disable = new ItemStack(Material.BLACK_WOOL);
