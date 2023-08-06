@@ -7,6 +7,6 @@ commands:
   easyrule:
     aliases:
       - "er"
-      - "easy""
+      - "easy"
     description: Manage game rules easily
-    usage: /easyrule <规则名称> <true|false>
+    usage: /easyrule <gamerule> <true|false>

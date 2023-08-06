@@ -41,7 +41,7 @@ public class MainCmd implements CommandExecutor {
             try {
                 value = Boolean.parseBoolean(args[1]);
             } catch (IllegalArgumentException e) {
-                sender.sendMessage(ChatColor.RED+"请输入有效值！");
+                sender.sendMessage("§c请输入有效值！");
                 return true;
             }
 
@@ -49,15 +49,15 @@ public class MainCmd implements CommandExecutor {
             switch (rule) {
                 case "爆炸保护":
                     player.getWorld().setGameRuleValue("mobGriefing", String.valueOf(value));
-                    sender.sendMessage(ChatColor.GREEN+"已" + (value ? "启用" : "禁用") + "爆炸保护！");
+                    sender.sendMessage("§a已" + (value ? "§a启用" : "§a禁用") + "§a爆炸保护！");
                     break;
                 case "死亡不掉落":
                     player.getWorld().setGameRuleValue("keepInventory", String.valueOf(value));
-                    sender.sendMessage(ChatColor.GREEN+"已" + (value ? "启用" : "禁用") + "死亡不掉落！");
+                    sender.sendMessage("§a已" + (value ? "§a启用" : "§a禁用") +"§a死亡不掉落！");
                     break;
                 default:
-                    sender.sendMessage(ChatColor.RED+"无效的规则！");
-                    sender.sendMessage(ChatColor.YELLOW+"可用的规则：爆炸保护、死亡不掉落");
+                    sender.sendMessage("§c无效的规则！");
+                    sender.sendMessage("§e可用的规则：爆炸保护、死亡不掉落");
                     break;
             }
         }

@@ -22,21 +22,21 @@ public class GameRuleGui implements CommandExecutor {
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
 
         if (!(sender instanceof Player)) {
-            sender.sendMessage(ChatColor.RED+"此指令只能由管理员发送！");
+            sender.sendMessage("§c此指令只能由管理员发送！");
             return true;
         }
         Player player = (Player) sender;
         //这里如果担心被刷 OP 可以根据自身经验进行修改
         if (!sender.isOp()){
-            sender.sendMessage(ChatColor.RED+"你没有权限执行该指令！");
+            sender.sendMessage("§c你没有权限执行该指令！");
         }
 
 
 
         if (args.length == 0){
-            sender.sendMessage(ChatColor.YELLOW+"/---------EasyRule--------");
-            sender.sendMessage(ChatColor.YELLOW+"/er gui         打开GUI界面");
-            sender.sendMessage(ChatColor.YELLOW+"或使用指令:/er <规则名称> <true|false>");
+            sender.sendMessage("§e/---------EasyRule--------");
+            sender.sendMessage("§e/er gui         打开GUI界面");
+            sender.sendMessage("§e或使用指令:/er <规则名称> <true|false>");
 
             return true;
         }
@@ -51,7 +51,7 @@ public class GameRuleGui implements CommandExecutor {
     }
 
     public void CreateGui(){
-        Inventory inv = Bukkit.createInventory(null,54,ChatColor.AQUA+"EasyRule服务器规则配置界面");
+        Inventory inv = Bukkit.createInventory(null,54,"§bEasyRule服务器规则配置界面");
 
         ItemStack disable = new ItemStack(Material.BLACK_WOOL);
         ItemStack enable = new ItemStack(Material.WHITE_WOOL);
