@@ -1,10 +1,9 @@
 package com.ekedata.easyrule;
 /**
  * Description: Manage game rules easily
- * Author: EkeData
+ * Author: EkeData，XiaoXing365
  * Date: 2023/7/26
  * 免费开源插件请严格遵守Apache协议
- * 该插件由ChatGPT合作完成，无任何借鉴
  */
 
 import java.util.ArrayList;
@@ -38,6 +37,7 @@ public class EasyRule extends JavaPlugin implements CommandExecutor, TabComplete
 
         // 插件成功加载提示信息
         Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN+"插件加载成功！");
+        Bukkit.getConsoleSender().sendMessage(ChatColor.AQUA+"作者: EkeData，XiaoXing365");
         //getLogger().info();
     }
 
