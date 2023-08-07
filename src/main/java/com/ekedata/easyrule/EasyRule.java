@@ -36,8 +36,8 @@ public class EasyRule extends JavaPlugin implements CommandExecutor, TabComplete
         getCommand("easyrule").setTabCompleter(new Tab());
 
         // 插件成功加载提示信息
-        Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN+"插件加载成功！");
-        Bukkit.getConsoleSender().sendMessage(ChatColor.AQUA+"作者: EkeData，XiaoXing365");
+        Bukkit.getConsoleSender().sendMessage("§a插件加载成功！");
+        Bukkit.getConsoleSender().sendMessage("§b作者: EkeData，XiaoXing365");
         //getLogger().info();
     }
 
@@ -46,7 +46,7 @@ public class EasyRule extends JavaPlugin implements CommandExecutor, TabComplete
     public void onDisable() {
 
         // 发送卸载的提示消息（红色）
-        Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN+"插件已卸载！");
+        Bukkit.getConsoleSender().sendMessage("§a插件已卸载！");
         //getLogger().info("§c插件已卸载！");
     }
 

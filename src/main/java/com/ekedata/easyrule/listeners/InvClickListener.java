@@ -11,7 +11,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 public class InvClickListener implements Listener {
     @EventHandler
     public void InvClickEvent(InventoryClickEvent event){
-            if (event.getView().getTitle().equalsIgnoreCase(ChatColor.AQUA+"EasyRule服务器规则配置界面")){
+            if (event.getView().getTitle().equalsIgnoreCase("§bEasyRule服务器规则配置界面")){
                 event.setCancelled(true);
                 if (event.getCurrentItem().getType().equals(Material.BLACK_WOOL)){
                     Player player = (Player) event.getWhoClicked();
