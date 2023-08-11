@@ -8,9 +8,11 @@ package com.ekedata.easyrule;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import com.ekedata.easyrule.cmds.MainCmd;
 import com.ekedata.easyrule.cmds.Tab;
+import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -32,8 +34,11 @@ public class EasyRule extends JavaPlugin implements CommandExecutor, TabComplete
     public void onEnable() {
         instance = this;
         // 注册指令执行器和TAB补全
-        getCommand("easyrule").setExecutor(new MainCmd());
-        getCommand("easyrule").setTabCompleter(new Tab());
+        Objects.requireNonNull(getCommand("easyrule")).setExecutor(new MainCmd());
+        Objects.requireNonNull(getCommand("easyrule")).setTabCompleter(new Tab());
+
+        String newTextColorTest = NamedTextColor.AQUA+"新颜色组件测试";
+        Bukkit.getConsoleSender().sendMessage(newTextColorTest);
 
         // 插件成功加载提示信息
         Bukkit.getConsoleSender().sendMessage("§a插件加载成功！");
