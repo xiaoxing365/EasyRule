@@ -1,7 +1,7 @@
 package com.ekedata.easyrule.cmds;
 
+import com.ekedata.easyrule.utils.CustomColor;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -11,7 +11,6 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,10 +61,10 @@ public class GameRuleGui implements CommandExecutor {
         List<String> isenable = new ArrayList<>();
         List<String> isdisable = new ArrayList<>();
 
-        isenable.add(ChatColor.GREEN+"此规则已开启！");
+        isenable.add(CustomColor.BLUE() +"此规则已开启！");
         enableMeta.setLore(isenable);
 
-        isdisable.add(ChatColor.RED+"此规则已关闭！");
+        isdisable.add(CustomColor.RED()+"此规则已关闭！");
         disableMeta.setLore(isdisable);
 
         for (String gameRule : player.getWorld().getGameRules()) {

@@ -9,15 +9,14 @@ group = 'com.ekedata'
 version = '1.0-SNAPSHOT'
 
 repositories {
-    mavenCentral()
     maven {
         name = "papermc-repo"
         url = "https://repo.papermc.io/repository/maven-public/"
     }
     //国内下载源（根据自己网络环境进行更换）
     maven {
-        name "tunamaven"
-        url "https://mirrors.tuna.tsinghua.edu.cn/gradle/maven2/"
+        name "huaweicloud"
+        url "https://mirrors.huaweicloud.com/repository/maven/"
     }
 }
 

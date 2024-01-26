@@ -1,7 +1,7 @@
 package com.ekedata.easyrule.cmds;
 
 import com.ekedata.easyrule.EasyRule;
-import org.bukkit.ChatColor;
+import com.ekedata.easyrule.utils.CustomColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -17,12 +17,12 @@ public class MainCmd implements CommandExecutor {
     public boolean onCommand(@NotNull CommandSender sender,@NotNull Command command,@NotNull String label,@NotNull String[] args) {
         // 检查是否为控制台或是否拥有管理权限
         if (!(sender instanceof Player)) {
-            sender.sendMessage(ChatColor.RED+"此指令只能由玩家发送！");
+            sender.sendMessage(CustomColor.RED()+"此指令只能由玩家发送！");
             return true;
         }
         //这里如果担心被刷 OP 可以根据自身经验进行修改
         if (!sender.isOp()){
-            sender.sendMessage(ChatColor.RED+"你没有权限执行该指令！");
+            sender.sendMessage(CustomColor.RED()+"你没有权限执行该指令！");
         }
 
         // 检查指令是否为 /easyrule
@@ -41,24 +41,67 @@ public class MainCmd implements CommandExecutor {
             try {
                 value = Boolean.parseBoolean(args[1]);
             } catch (IllegalArgumentException e) {
-                sender.sendMessage("§c请输入有效值！");
+                sender.sendMessage(CustomColor.RED()+"请输入有效值！");
                 return true;
             }
 
             // 根据规则名称执行相应操作
             switch (rule) {
-                case "爆炸保护":
+                case "爆炸保护":{
                     player.getWorld().setGameRuleValue("mobGriefing", String.valueOf(value));
-                    sender.sendMessage("§a已" + (value ? "§a启用" : "§a禁用") + "§a爆炸保护！");
+                    sender.sendMessage(CustomColor.BLUE() +"已" + (value ? CustomColor.BLUE() +"启用" : CustomColor.BLUE() +"禁用") + CustomColor.BLUE() +"爆炸保护！");
                     break;
-                case "死亡不掉落":
+                }
+                case "死亡不掉落":{
                     player.getWorld().setGameRuleValue("keepInventory", String.valueOf(value));
-                    sender.sendMessage("§a已" + (value ? "§a启用" : "§a禁用") +"§a死亡不掉落！");
+                    sender.sendMessage(CustomColor.BLUE() +"已" + (value ? CustomColor.BLUE() +"启用" : CustomColor.BLUE() +"禁用") +CustomColor.BLUE()+"死亡不掉落！");
                     break;
-                default:
-                    sender.sendMessage("§c无效的规则！");
-                    sender.sendMessage("§e可用的规则：爆炸保护、死亡不掉落");
+                }
+                case "在公告区显示玩家进度":{
+                    player.getWorld().setGameRuleValue("announceAdvancements", String.valueOf(value));
+                    sender.sendMessage(CustomColor.BLUE() +"已" + (value ? CustomColor.BLUE() +"启用" : CustomColor.BLUE() +"禁用") +CustomColor.BLUE()+"在公告区显示玩家进度！");
                     break;
+                }
+                case "命令方块执行时显示":{
+                    player.getWorld().setGameRuleValue("commandBlockOutput", String.valueOf(value));
+                    sender.sendMessage(CustomColor.BLUE() +"已" + (value ? CustomColor.BLUE() +"启用" : CustomColor.BLUE() +"禁用") +CustomColor.BLUE()+"命令方块执行时显示！");
+                    break;
+                }
+                case "让服务器停止检查使用鞘翅的玩家的移动速度":{
+                    player.getWorld().setGameRuleValue("disableElytraMovementCheck", String.valueOf(value));
+                    sender.sendMessage(CustomColor.BLUE() +"已" + (value ? CustomColor.BLUE() +"启用" : CustomColor.BLUE() +"禁用") +CustomColor.BLUE()+"让服务器停止检查使用鞘翅的玩家的移动速度！");
+                    break;
+                }
+                case "是否禁用袭击":{
+                    player.getWorld().setGameRuleValue("disableRaids", String.valueOf(value));
+                    sender.sendMessage(CustomColor.BLUE() +"已" + (value ? CustomColor.BLUE() +"启用" : CustomColor.BLUE() +"禁用") +CustomColor.BLUE()+"是否禁用袭击！");
+                    break;
+                }
+                case "是否进行日夜交替和月相变化":{
+                    player.getWorld().setGameRuleValue("doDaylightCycle", String.valueOf(value));
+                    sender.sendMessage(CustomColor.BLUE() +"已" + (value ? CustomColor.BLUE() +"启用" : CustomColor.BLUE() +"禁用") +CustomColor.BLUE()+"是否进行日夜交替和月相变化！");
+                    break;
+                }
+                case "非生物实体是否掉落物品":{
+                    player.getWorld().setGameRuleValue("doEntityDrops", String.valueOf(value));
+                    sender.sendMessage(CustomColor.BLUE() +"已" + (value ? CustomColor.BLUE() +"启用" : CustomColor.BLUE() +"禁用") +CustomColor.BLUE()+"非生物实体是否掉落物品！");
+                    break;
+                }
+                case "火是否蔓延及自然熄灭":{
+                    player.getWorld().setGameRuleValue("doFireTick", String.valueOf(value));
+                    sender.sendMessage(CustomColor.BLUE() +"已" + (value ? CustomColor.BLUE() +"启用" : CustomColor.BLUE() +"禁用") +CustomColor.BLUE()+"火是否蔓延及自然熄灭！");
+                    break;
+                }
+                case "幻翼是否在夜晚生成":{
+                    player.getWorld().setGameRuleValue("doInsomnia", String.valueOf(value));
+                    sender.sendMessage(CustomColor.BLUE() +"已" + (value ? CustomColor.BLUE() +"启用" : CustomColor.BLUE() +"禁用") +CustomColor.BLUE()+"幻翼是否在夜晚生成！");
+                    break;
+                }
+                default:{
+                    sender.sendMessage(CustomColor.RED() +"无效的规则！");
+                    sender.sendMessage(CustomColor.YELLOW() +"可用的规则：爆炸保护、死亡不掉落");
+                    break;
+                }
             }
         }
         return true;

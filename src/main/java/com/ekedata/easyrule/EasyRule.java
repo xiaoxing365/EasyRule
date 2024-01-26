@@ -12,7 +12,7 @@ import java.util.Objects;
 
 import com.ekedata.easyrule.cmds.MainCmd;
 import com.ekedata.easyrule.cmds.Tab;
-import net.kyori.adventure.text.format.NamedTextColor;
+import com.ekedata.easyrule.utils.CustomColor;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -33,17 +33,22 @@ public class EasyRule extends JavaPlugin implements CommandExecutor, TabComplete
     @Override
     public void onEnable() {
         instance = this;
+        initPlugin();
+        regCmds();
+
+    }
+
+    public void initPlugin(){
+        // 插件成功加载提示信息
+        Bukkit.getConsoleSender().sendMessage(CustomColor.GREEN()+this.getPluginMeta().getDisplayName()+"加载成功！");
+        Bukkit.getConsoleSender().sendMessage("作者: "+this.instance.getPluginMeta().getAuthors());
+        //getLogger().info();
+    }
+    public void regCmds(){
         // 注册指令执行器和TAB补全
         Objects.requireNonNull(getCommand("easyrule")).setExecutor(new MainCmd());
         Objects.requireNonNull(getCommand("easyrule")).setTabCompleter(new Tab());
 
-        String newTextColorTest = NamedTextColor.AQUA+"新颜色组件测试";
-        Bukkit.getConsoleSender().sendMessage(newTextColorTest);
-
-        // 插件成功加载提示信息
-        Bukkit.getConsoleSender().sendMessage("§a插件加载成功！");
-        Bukkit.getConsoleSender().sendMessage("§b作者: EkeData，XiaoXing365");
-        //getLogger().info();
     }
 
     @Override
@@ -51,7 +56,7 @@ public class EasyRule extends JavaPlugin implements CommandExecutor, TabComplete
     public void onDisable() {
 
         // 发送卸载的提示消息（红色）
-        Bukkit.getConsoleSender().sendMessage("§a插件已卸载！");
+        Bukkit.getConsoleSender().sendMessage(CustomColor.BLUE()+"插件已卸载！");
         //getLogger().info("§c插件已卸载！");
     }
 
