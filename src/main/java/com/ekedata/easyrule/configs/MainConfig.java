@@ -10,4 +10,8 @@ public class MainConfig {
     public boolean getEnableGui() {
         return main.getConfig().getBoolean("EnableGui");
     }
+
+    public void loadDefConfig(){
+        main.saveDefaultConfig();
+    }
 }

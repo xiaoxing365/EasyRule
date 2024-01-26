@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameRuleGui implements CommandExecutor {
-    private Player player;
+    private static Player player;
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
 
@@ -49,7 +49,7 @@ public class GameRuleGui implements CommandExecutor {
         return false;
     }
 
-    public void CreateGui(){
+    public static void CreateGui(){
         Inventory inv = Bukkit.createInventory(null,54,"§bEasyRule服务器规则配置界面");
 
         ItemStack disable = new ItemStack(Material.BLACK_WOOL);

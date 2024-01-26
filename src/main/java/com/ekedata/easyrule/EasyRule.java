@@ -10,8 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import com.ekedata.easyrule.cmds.GameRuleGui;
 import com.ekedata.easyrule.cmds.MainCmd;
 import com.ekedata.easyrule.cmds.Tab;
+import com.ekedata.easyrule.configs.MainConfig;
 import com.ekedata.easyrule.utils.CustomColor;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -24,6 +26,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class EasyRule extends JavaPlugin implements CommandExecutor, TabCompleter {
 
+    MainConfig mainConfig = new MainConfig();
     private EasyRule instance;
 
     public EasyRule getInstance(){
@@ -35,7 +38,7 @@ public class EasyRule extends JavaPlugin implements CommandExecutor, TabComplete
         instance = this;
         initPlugin();
         regCmds();
-
+        initConfigs();
     }
 
     public void initPlugin(){
@@ -49,6 +52,16 @@ public class EasyRule extends JavaPlugin implements CommandExecutor, TabComplete
         Objects.requireNonNull(getCommand("easyrule")).setExecutor(new MainCmd());
         Objects.requireNonNull(getCommand("easyrule")).setTabCompleter(new Tab());
 
+    }
+
+    public void initConfigs(){
+        mainConfig.loadDefConfig();
+    }
+
+    public void loadGUI(){
+        if (mainConfig.getEnableGui()){
+            GameRuleGui.CreateGui();
+        }
     }
 
     @Override
