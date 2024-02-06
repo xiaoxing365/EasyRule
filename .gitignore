@@ -11,3 +11,7 @@ target
 .settings
 .project
 .classpath
+#vscode
+.vscode
+/.vscode/
+
